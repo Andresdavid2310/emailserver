@@ -26,10 +26,10 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-          JDBC_DATABASE_URL: ${{ secrets.JDBC_DATABASE_URL }}
-          JDBC_DATABASE_USERNAME: ${{ secrets.JDBC_DATABASE_USERNAME }}
-          JDBC_DATABASE_PASSWORD: ${{ secrets.JDBC_DATABASE_PASSWORD }}
-          SPRING_PROFILES_ACTIVE: ${{ secrets.SPRING_PROFILES_ACTIVE }}
+          JDBC_DATABASE_URL: ${{ env.JDBC_DATABASE_URL }}
+          JDBC_DATABASE_USERNAME: ${{ env.JDBC_DATABASE_USERNAME }}
+          JDBC_DATABASE_PASSWORD: ${{ env.JDBC_DATABASE_PASSWORD }}
+          SPRING_PROFILES_ACTIVE: ${{ env.SPRING_PROFILES_ACTIVE }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
