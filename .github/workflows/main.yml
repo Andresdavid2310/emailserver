@@ -30,6 +30,9 @@ jobs:
           JDBC_DATABASE_USERNAME: ${{ env.JDBC_DATABASE_USERNAME }}
           JDBC_DATABASE_PASSWORD: ${{ env.JDBC_DATABASE_PASSWORD }}
           SPRING_PROFILES_ACTIVE: ${{ env.SPRING_PROFILES_ACTIVE }}
+          EMAIL_SPAM_STATUS: ${{ env.EMAIL_SPAM_STATUS }}
+          EMAIL_TARGET_EMAIL: ${{ env.EMAIL_SPAM_STATUS }}
+          SCHEDULED_HOUR_CRON: ${{ env.SCHEDULED_HOUR_CRON }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
