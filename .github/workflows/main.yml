@@ -9,7 +9,27 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    env:
+      DB_HOST: ${{ secrets.JDBC_DATABASE_URL }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      DB_NAME: ${{ secrets.JDBC_DATABASE_NAME }}
+      DB_USERNAME: ${{ secrets.JDBC_DATABASE_USERNAME }}
+      DB_PASSWORD: ${{ secrets.JDBC_DATABASE_PASSWORD }}
+      SPRING_DATASOURCE_URL: ${{ secrets.JDBC_DATABASE_URL }}
+      SPRING_DATASOURCE_USERNAME: ${{ secrets.JDBC_DATABASE_USERNAME }}
+      SPRING_DATASOURCE_PASSWORD: ${{ secrets.JDBC_DATABASE_PASSWORD }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      EMAIL_SPAM_STATUS: ${{ secrets.EMAIL_SPAM_STATUS }}
+      EMAIL_TARGET_EMAIL: ${{ secrets.EMAIL_TARGET_EMAIL }}
+      SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
+
     steps:
+      - name: Debug Print Environment Variables
+        run: |
+          echo "SPRING_DATASOURCE_URL: $SPRING_DATASOURCE_URL"
+          echo "SPRING_DATASOURCE_USERNAME: $SPRING_DATASOURCE_USERNAME"
+          echo "SPRING_DATASOURCE_PASSWORD: $SPRING_DATASOURCE_PASSWORD"
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -25,24 +45,10 @@ jobs:
       - name: Install Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
 
-      - name: Deploy
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          DB_HOST: ${{ env.JDBC_DATABASE_URL }}
-          DB_PORT: ${{ env.DB_PORT }}
-          DB_NAME: ${{ env.JDBC_DATABASE_USERNAME }}
-          DB_USERNAME: ${{ env.DB_USERNAME }}
-          DB_PASSWORD: ${{ env.JDBC_DATABASE_PASSWORD }}
-          SPRING_DATASOURCE_URL: ${{ env.JDBC_DATABASE_URL }}
-          SPRING_DATASOURCE_USERNAME: ${{ env.JDBC_DATABASE_USERNAME }}
-          SPRING_DATASOURCE_PASSWORD: ${{ env.JDBC_DATABASE_PASSWORD }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          EMAIL_SPAM_STATUS: ${{ env.EMAIL_SPAM_STATUS }}
-          EMAIL_TARGET_EMAIL: ${{ env.EMAIL_TARGET_EMAIL }}
-          SCHEDULED_HOUR_CRON: ${{ env.SCHEDULED_HOUR_CRON }}
+      - name: Deploy to Fly.io
         run: |
           flyctl deploy --build-arg DB_HOST=${{ env.DB_HOST }} \
                         --build-arg DB_PORT=${{ env.DB_PORT }} \
                         --build-arg DB_NAME=${{ env.DB_NAME }} \
                         --build-arg DB_USERNAME=${{ env.DB_USERNAME }} \
-                        --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+                        --build-arg DB_PASSWORD=${{ env.DB_PASSWORD }}
