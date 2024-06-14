@@ -32,7 +32,7 @@ jobs:
           echo 'export FLYCTL_INSTALL="/home/runner/.fly"' >> $HOME/.bashrc
           echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> $HOME/.bashrc
           source $HOME/.bashrc
-          flyctl version
+          home/runner/.fly/bin/flyctl version
       - name: Deploy to Fly.io
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
