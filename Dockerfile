@@ -1,5 +1,5 @@
 # Dockerfile
-FROM adoptopenjdk:22-jdk-hotspot
+FROM adoptopenjdk:17-jdk-hotspot
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ COPY target/emailserver-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación al iniciar el contenedor
-ENTRYPOINT ["java", "-jar", "emailserver-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
