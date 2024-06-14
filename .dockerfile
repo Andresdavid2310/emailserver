@@ -1,24 +1,13 @@
-# Usa una imagen base de Amazon Corretto 22
-FROM amazoncorretto:22.0.1
+# Dockerfile
+FROM adoptopenjdk:22-jdk-hotspot
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+# Copiar el JAR de la aplicación
+COPY target/emailserver-0.0.1-SNAPSHOT.jar app.jar
 
-ENV DB_HOST=$DB_HOST
-ENV DB_PORT=$DB_PORT
-ENV DB_NAME=$DB_NAME
-ENV DB_USERNAME=$DB_USERNAME
-ENV DB_PASSWORD=$DB_PASSWORD
-ENV SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL
-ENV SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME
-ENV SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD
-ENV JWT_SECRET=$JWT_SECRET
-ENV EMAIL_SPAM_STATUS=$EMAIL_SPAM_STATUS
-ENV EMAIL_TARGET_EMAIL=$EMAIL_TARGET_EMAIL
-ENV SCHEDULED_HOUR_CRON=$SCHEDULED_HOUR_CRON
-
+# Puerto expuesto por la aplicación
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación
+# Comando para ejecutar la aplicación al iniciar el contenedor
 ENTRYPOINT ["java", "-jar", "app.jar"]
