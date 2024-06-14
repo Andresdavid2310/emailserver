@@ -27,7 +27,7 @@ jobs:
         run: docker build -t myapp .
 
       - name: Install flyctl
-        run: curl -L https://getfly.io/cli/install.sh | sh
+        run: curl -L https://fly.io/install.sh | sh
 
       - name: Deploy to Fly.io
         env:
