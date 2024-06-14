@@ -27,7 +27,11 @@ jobs:
         run: docker build -t myapp .
 
       - name: Install flyctl
-        run: curl -L https://fly.io/install.sh | sh
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          echo 'export FLYCTL_INSTALL="/home/runner/.fly"' >> $HOME/.bashrc
+          echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> $HOME/.bashrc
+          source $HOME/.bashrc
 
       - name: Deploy to Fly.io
         env:
