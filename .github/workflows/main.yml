@@ -32,7 +32,7 @@ jobs:
           echo 'export FLYCTL_INSTALL="/home/runner/.fly"' >> $HOME/.bashrc
           echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> $HOME/.bashrc
           source $HOME/.bashrc
-
+          flyctl version
       - name: Deploy to Fly.io
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
@@ -48,5 +48,6 @@ jobs:
           EMAIL_TARGET_EMAIL: ${{ secrets.EMAIL_TARGET_EMAIL }}
           SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP_NAME: ${{ secrets.FLY_APP_NAME }}
         run: |
-          fly deploy -a serveremail --image myapp
+          flyctl deploy -a $FLY_APP_NAME --image myapp
