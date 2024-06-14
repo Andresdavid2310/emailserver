@@ -49,4 +49,4 @@ jobs:
           SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          flyctl deploy -a serveremail --image myapp
+          fly deploy -a serveremail --image myapp
