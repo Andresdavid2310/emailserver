@@ -12,9 +12,10 @@ jobs:
     steps:
       - name: Debug Print Environment Variables
         run: |
-          echo "SPRING_DATASOURCE_URL: ${{SPRING_DATASOURCE_URL}}"
+          echo "SPRING_DATASOURCE_URL: $SPRING_DATASOURCE_URL"
           echo "SPRING_DATASOURCE_USERNAME: $SPRING_DATASOURCE_USERNAME"
           echo "SPRING_DATASOURCE_PASSWORD: $SPRING_DATASOURCE_PASSWORD"
+          echo "SPRING_DATASOURCE_PASSWORD: $JDBC_DATABASE_URL"
       - name: Checkout repository
         uses: actions/checkout@v3
 
