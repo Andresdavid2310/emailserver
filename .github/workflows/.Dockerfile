@@ -4,7 +4,7 @@ FROM adoptopenjdk:22-jdk-hotspot
 WORKDIR /app
 
 # Copiar el JAR de la aplicación
-COPY target/emailserver-0.0.1-SNAPSHOT.jar app.jar
+COPY ../../target/emailserver-0.0.1-SNAPSHOT.jar app.jar
 
 # Puerto expuesto por la aplicación
 EXPOSE 8080

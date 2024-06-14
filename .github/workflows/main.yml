@@ -24,7 +24,7 @@ jobs:
         run: mvn clean package
 
       - name: Build Docker image
-        run: docker build -t myapp -f ../../.Dockerfile .
+        run: docker build -t myapp .
 
       - name: Install Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
