@@ -1,8 +1,0 @@
-export SPRING_PROFILES_ACTIVE=dev
-export SPRING_FLYWAY_USER=postgres
-export SPRING_FLYWAY_PASSWORD=postgres
-export SPRING_FLYWAY_URL=jdbc:postgresql://localhost:5432/serveremail
-export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/serveremail
-export SPRING_DATASOURCE_USERNAME=postgres
-export SPRING_DATASOURCE_PASSWORD=postgres
-export SERVER_PORT=8080
