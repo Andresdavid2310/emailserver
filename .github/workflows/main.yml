@@ -34,7 +34,7 @@ jobs:
           EMAIL_TARGET_EMAIL: ${{ env.EMAIL_TARGET_EMAIL }}
           SCHEDULED_HOUR_CRON: ${{ env.SCHEDULED_HOUR_CRON }}
           SERVER_PORT: ${{ env.SERVER_PORT }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_SECRET: ${{ env.JWT_SECRET }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
