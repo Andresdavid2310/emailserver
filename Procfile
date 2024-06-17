@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/emailservice-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$SERVER_PORT -jar target/emailserver-0.0.1-SNAPSHOT
