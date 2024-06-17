@@ -32,7 +32,7 @@ public class SecurityConfigurations {
         http.csrf(AbstractHttpConfigurer::disable);
         http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                 .anyRequest().authenticated());        http.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
