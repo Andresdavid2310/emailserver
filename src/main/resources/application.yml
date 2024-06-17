@@ -51,8 +51,8 @@ springdoc:
     enabled: true
 
 email:
-  spam-status: ${EMAIL_SPAM_STATUS}
-  target-email: ${EMAIL_TARGET_EMAIL}
-  scheduled_hour_cron: ${SCHEDULED_HOUR_CRON}
+  spam-status: ${EMAIL_SPAM_STATUS:SPAM}
+  target-email: ${EMAIL_TARGET_EMAIL:carl@gbtec.es}
+  scheduled_hour_cron: ${SCHEDULED_HOUR_CRON:0 00 10 * * *}
 jwt:
   secret: ${JWT_SECRET:mySecretKey}
