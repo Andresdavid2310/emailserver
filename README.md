@@ -48,7 +48,7 @@ Puedes revisar la documentación de la Api en swagger para conocer la estructura
 
 Local
 ``` go
-https://github.com/tuusuario/emailservice.git
+http://localhost:8080/swagger-ui/index.html
 ```
 
 Heroku
