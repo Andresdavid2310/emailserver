@@ -1,4 +1,4 @@
-name: Deploy to Fly.io
+name: Deploy to Heroku
 
 on:
   push:
@@ -7,43 +7,36 @@ on:
 
 jobs:
   build:
-    name: Deploy app
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up JDK 22
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v3
         with:
-          java-version: '22'
           distribution: 'temurin'
+          java-version: '22'
 
-      - name: Build with Maven (without tests)
+      - name: Build with Maven
         run: mvn clean package
 
-      - name: Build Docker image
-        run: docker build -t myapp .
-
-      - name: Install flyctl
-        run: |
-          curl -L https://fly.io/install.sh | sh
-      - name: Deploy to Fly.io
+      - name: Deploy to Heroku
         env:
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-          SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
-          SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
-          SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          JDBC_DATABASE_URL: ${{ env.SPRING_DATASOURCE_URL }}
+          JDBC_DATABASE_USERNAME: ${{ env.SPRING_DATASOURCE_USERNAME }}
+          JDBC_DATABASE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+          SPRING_PROFILES_ACTIVE: ${{ env.SPRING_PROFILES_ACTIVE }}
+          EMAIL_SPAM_STATUS: ${{ env.EMAIL_SPAM_STATUS }}
+          EMAIL_TARGET_EMAIL: ${{ env.EMAIL_TARGET_EMAIL }}
+          SCHEDULED_HOUR_CRON: ${{ env.SCHEDULED_HOUR_CRON }}
+          SERVER_PORT: ${{ env.SERVER_PORT }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          EMAIL_SPAM_STATUS: ${{ secrets.EMAIL_SPAM_STATUS }}
-          EMAIL_TARGET_EMAIL: ${{ secrets.EMAIL_TARGET_EMAIL }}
-          SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          FLY_APP_NAME: ${{ secrets.FLY_APP_NAME }}
         run: |
-          flyctl deploy -a $FLY_APP_NAME --image myapp
+          curl https://cli-assets.heroku.com/install.sh | sh
+          heroku auth:token
+          heroku plugins:install java
+          heroku deploy:jar target/emailserver-0.0.1-SNAPSHOT.jar --app ${{ secrets.HEROKU_APP_NAME }}
