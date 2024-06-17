@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "bdd9c478-0052-4569-af9a-1a6561568e59",
+		"name": "Email Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11985200"
+	},
+	"item": [
+		{
+			"name": "LocalHost",
+			"item": [
+				{
+					"name": "getAllEmails",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXMiLCJpc3MiOiJBUEkgVm9sbC5tZWQiLCJleHAiOjE3MTgyODU1Njl9.d7_Ev8Aw-i1GGiJnVphb-XCQtEjrQrFSs1j8yrMijmk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/emails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmailById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/emails/51",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmail",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailId\": 1,\n    \"emailFrom\": \"xxxxxx@mail.com\",\n    \"emailTo\": [\n        {\n            \"email\": \"xxxxxxxx@mail.com\"\n        }\n    ],\n    \"emailCC\": [\n        {\n            \"email\": \"xxxxxxxxx@mail.com\"\n        }\n    ],\n    \"emailBody\": \"Body text modificado\",\n    \"state\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/emails/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEmail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/emails/9999",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createEmail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emails\": [\n        {\n            \"emailId\": 51,\n            \"emailFrom\": \"ema2il@mail.com\",\n            \"emailTo\": [\n                {\n                    \"email\": \"andre2@mail.com\"\n                }\n            ],\n            \"emailCC\": [\n                {\n                    \"email\": \"@andres2@mail.com\"\n                }\n            ],\n            \"emailBody\": \"Body text\",\n            \"state\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/emails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emails\": [\n        {\n            \"emailId\": 51,\n            \"emailFrom\": \"ema2il@mail.com\",\n            \"emailTo\": [\n                {\n                    \"email\": \"andre2@mail.com\"\n                }\n            ],\n            \"emailCC\": [\n                {\n                    \"email\": \"@andres2@mail.com\"\n                }\n            ],\n            \"emailBody\": \"Body text\",\n            \"state\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/emails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Heroku enviroment",
+			"item": [
+				{
+					"name": "getAllEmails",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXMiLCJpc3MiOiJBUEkgVm9sbC5tZWQiLCJleHAiOjE3MTg2Mzk1OTB9.NGSPeiBio8CbkLd4oX3ayKlXufN83XOHF-TmELVMT-M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://serveremail-85ccc82553bb.herokuapp.com/emails",
+							"protocol": "https",
+							"host": [
+								"serveremail-85ccc82553bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmailById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://serveremail-85ccc82553bb.herokuapp.com/emails/51",
+							"protocol": "https",
+							"host": [
+								"serveremail-85ccc82553bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"emails",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmail",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailId\": 1,\n    \"emailFrom\": \"xxxxxx@mail.com\",\n    \"emailTo\": [\n        {\n            \"email\": \"xxxxxxxx@mail.com\"\n        }\n    ],\n    \"emailCC\": [\n        {\n            \"email\": \"xxxxxxxxx@mail.com\"\n        }\n    ],\n    \"emailBody\": \"Body text modificado\",\n    \"state\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serveremail-85ccc82553bb.herokuapp.com/emails/1",
+							"protocol": "https",
+							"host": [
+								"serveremail-85ccc82553bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"emails",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEmail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://serveremail-85ccc82553bb.herokuapp.com/emails/9999",
+							"protocol": "https",
+							"host": [
+								"serveremail-85ccc82553bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"emails",
+								"9999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"andres\",\n    \"password\": \"Andres2310.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serveremail-85ccc82553bb.herokuapp.com/login",
+							"protocol": "https",
+							"host": [
+								"serveremail-85ccc82553bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createEmail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emails\": [\n        {\n            \"emailId\": 51,\n            \"emailFrom\": \"ema2il@mail.com\",\n            \"emailTo\": [\n                {\n                    \"email\": \"andre2@mail.com\"\n                }\n            ],\n            \"emailCC\": [\n                {\n                    \"email\": \"@andres2@mail.com\"\n                }\n            ],\n            \"emailBody\": \"Body text\",\n            \"state\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/emails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
