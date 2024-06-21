@@ -35,13 +35,6 @@ jobs:
       - name: Set up SonarCloud
         uses: actions/checkout@v3
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v1
-        with:
-          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-          organization: ${{ secrets.SONAR_ORGANIZATION }}
-          token: ${{ secrets.SONAR_TOKEN }}
-
       - name: Deploy to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -55,8 +48,18 @@ jobs:
           SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
           heroku plugins:install java
           heroku deploy:jar target/emailserver-0.0.1-SNAPSHOT.jar --app serveremail
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1
+        with:
+          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+          organization: ${{ secrets.SONAR_ORGANIZATION }}
+          token: ${{ secrets.SONAR_TOKEN }}
