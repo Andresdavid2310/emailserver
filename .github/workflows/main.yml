@@ -18,22 +18,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '22'
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
 
       - name: Build with Maven
         run: mvn clean package
-
-      - name: Run Unit Tests
-        run: mvn test
-
-      - name: Set up SonarCloud
-        uses: actions/checkout@v3
 
       - name: Deploy to Heroku
         env:
@@ -48,9 +35,6 @@ jobs:
           SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
