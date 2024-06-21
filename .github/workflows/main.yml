@@ -49,7 +49,7 @@ jobs:
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY}}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
