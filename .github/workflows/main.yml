@@ -35,6 +35,7 @@ jobs:
           SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
@@ -44,6 +45,6 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1
         with:
-          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-          organization: ${{ secrets.SONAR_ORGANIZATION }}
+          projectKey: Andresdavid2310_emailserver
+          organization: benavides
           token: ${{ secrets.SONAR_TOKEN }}
