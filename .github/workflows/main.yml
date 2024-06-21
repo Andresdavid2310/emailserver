@@ -35,18 +35,6 @@ jobs:
       - name: Set up SonarCloud
         uses: actions/checkout@v3
 
-      - name: SonarCloud Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          run: |
-          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar \
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
-
       - name: Deploy to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -60,8 +48,20 @@ jobs:
           SCHEDULED_HOUR_CRON: ${{ secrets.SCHEDULED_HOUR_CRON }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY}}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku auth:token
           heroku plugins:install java
           heroku deploy:jar target/emailserver-0.0.1-SNAPSHOT.jar --app serveremail
+
+      - name: SonarCloud Scan
+        run: |
+          run: |
+          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar \
+            -Dsonar.projectKey=${{ SONAR_PROJECT_KEY }} \
+          -Dsonar.organization=${{ SONAR_ORGANIZATION }} \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ SONAR_TOKEN }}
