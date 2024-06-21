@@ -20,6 +20,8 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.release>17</maven.compiler.release>
+		<sonar.organization>benavides</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
 	</properties>
 	<dependencies>
@@ -122,6 +124,7 @@
 			<artifactId>java-jwt</artifactId>
 			<version>4.2.0</version>
 		</dependency>
+
 	</dependencies>
 
 
