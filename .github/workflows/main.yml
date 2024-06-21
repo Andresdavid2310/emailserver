@@ -62,4 +62,4 @@ jobs:
             -Dsonar.projectKey=Andresdavid2310_emailserver
             -Dsonar.organization=benavides
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ SONAR_TOKEN }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
