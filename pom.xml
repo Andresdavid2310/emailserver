@@ -21,8 +21,7 @@
 		<maven.compiler.release>17</maven.compiler.release>
 		<sonar.organization>benavides</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sona.projectKey>Andresdavid2310_emailserver</sona.projectKey>
-
+		<sonar.projectKey>Andresdavid2310_emailserver</sonar.projectKey>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -124,7 +123,30 @@
 			<artifactId>java-jwt</artifactId>
 			<version>4.2.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.12.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>5.12.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.hakky54</groupId>
+			<artifactId>logcaptor</artifactId>
+			<version>2.9.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -4,7 +4,10 @@
 
 ## Descripción
 
-Esta es una API RESTful para un servicio de correo electrónico, construida con Spring Boot y desplegada en Heroku.
+Esta es una API RESTFUL para un servicio de correo electrónico, construida con Spring Boot y desplegada en Heroku.
+
+Para el desarrollo de esta aplicación se utilizó GitHubActions para CI/CD desplegando la aplicación en heroku, 
+análisis de código estático con sonarcloud y pruebas unitarias con mockito
 
 ## Tecnologías Utilizadas
 
@@ -20,6 +23,10 @@ Esta es una API RESTful para un servicio de correo electrónico, construida con 
 - PostgreSQL
 - Swagger
 - Postman
+- SonarCloud
+- GitHub Actions
+- Mockito
+- Junit
 
 ## Requisitos Previos
 
@@ -63,6 +70,13 @@ Para poder ejecutar la api se debe: <br>
 - Consumir el endpoint **/login** enviando usuario y contraseña para generar un token jwt
 - Este token se debe enviar en el encabezado autorization para que pueda ser validado por la Api
 - Se agregó un usuario en la bd por defecto que permite hacer el login.
+
+### SonarCloud
+
+Puedes acceder a ver el análisis de codigo estatico en sonarcloud en el siguiente enlace:
+``` go
+https://sonarcloud.io/project/overview?id=Andresdavid2310_emailserver
+```
 
 Collection Postman
 Puedes importar la coleccion de postman desde el archivo **EmailServerPostman_collection.json**
